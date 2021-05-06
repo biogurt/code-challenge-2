@@ -21,8 +21,7 @@ describe("Robot", () => {
         it("should rotate 45° when called once", () => {
             const robot = new Robot("W");
             robot.rotateCW();
-            const actualDireciton = robot.getDirection();
-            expect(actualDireciton).to.equal("NW");
+            expect(robot.getDirection()).to.equal("NW");
 
         });
         it("should rotate 90° when called twice", () => {
