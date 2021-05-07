@@ -1,28 +1,33 @@
 class Robot {
-    constructor(direction) {
+    constructor(direction, simulateRotation = false) {
         this.validDirections = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-        if (!this._isValidDirection(direction)) {
+        if (!this.isValidDirection(direction)) {
             throw new Error("Invalid direction");
         }
         this.directionIndex = this.validDirections.indexOf(direction);
+        this.simulateRotation = typeof simulateRotation === "boolean" ? simulateRotation : false;
     }
 
-    _isValidDirection(direction) {
-        return direction && this.validDirections.indexOf(direction) != -1;
+    isValidDirection(direction) {
+        return direction && this.validDirections.indexOf(direction) !== -1;
     }
 
-    _setNewDirection(finalDirectionIndex) {
-        if (finalDirectionIndex < 0) {
-            this.directionIndex = this.validDirections.length - 1;
-        } else {
-            this.directionIndex = finalDirectionIndex % this.validDirections.length;
-        }
+    setNewDirection(finalDirectionIndex) {
+        this.directionIndex = finalDirectionIndex;
     }
 
-    _simulateRealRotation(finalDirectionIndex) {
+    simulateRealRotation(finalDirectionIndex) {
         setTimeout(() => {
-            this._setNewDirection(finalDirectionIndex);
+            this.setNewDirection(finalDirectionIndex);
         }, 200);
+    }
+
+    rotate(finalDirectionIndex) {
+        if (this.simulateRotation) {
+            this.simulateRealRotation(finalDirectionIndex);
+        } else {
+            this.setNewDirection(finalDirectionIndex);
+        }
     }
 
     getDirection() {
@@ -30,12 +35,13 @@ class Robot {
     }
 
     rotateCW() {
-        this._simulateRealRotation(this.directionIndex + 1);
+        this.rotate(this.directionIndex + 1);
     }
 
     rotateCCW() {
-        this._simulateRealRotation(this.directionIndex - 1);
+        this.rotate(this.directionIndex - 1);
     }
 }
+
 
 module.exports = Robot;
