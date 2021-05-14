@@ -2,6 +2,18 @@ require("mocha");
 const { expect } = require("chai");
 const Robot = require("./index");
 
+//
+//  cardinal directions
+// 
+//           N     
+//      NW   |   NE
+//         \ | /
+//    W - - -x- - - E      
+//         / | \   
+//      SW   |   SE     
+//           S
+//
+
 describe("Robot", () => {
 
     describe("constructor", () => {
@@ -61,35 +73,35 @@ describe("Robot", () => {
         });
     });
 
-    xdescribe("Simulated rotation", () => {
-        const simulateRotation = true;
+    // describe("Simulated rotation", () => {
+    //     const simulateRotation = true;
 
-        describe("rotate clockwise", () => {
-            it("should rotate 45° when called once", () => {
-                const robot = new Robot("W", simulateRotation);
-                robot.rotateCW();
-                expect(robot.getDirection()).to.equal("NW");
-            });
-            it("should rotate 90° when called twice", () => {
-                const robot = new Robot("W", simulateRotation);
-                robot.rotateCW();
-                robot.rotateCW();
-                expect(robot.getDirection()).to.equal("N");
-            });
-        });
+    //     describe("rotate clockwise", () => {
+    //         it("should rotate 45° when called once", () => {
+    //             const robot = new Robot("W", simulateRotation);
+    //             robot.rotateCW();
+    //             expect(robot.getDirection()).to.equal("NW");
+    //         });
+    //         it("should rotate 90° when called twice", () => {
+    //             const robot = new Robot("W", simulateRotation);
+    //             robot.rotateCW();
+    //             robot.rotateCW();
+    //             expect(robot.getDirection()).to.equal("N");
+    //         });
+    //     });
 
-        describe("rotate counter-clockwise", () => {
-            it("should rotate -45° when called once", () => {
-                const robot = new Robot("NE", simulateRotation);
-                robot.rotateCCW();
-                expect(robot.getDirection()).to.equal("N");
-            });
-            it("should rotate -90° when called twice", () => {
-                const robot = new Robot("NE", simulateRotation);
-                robot.rotateCCW();
-                robot.rotateCCW();
-                expect(robot.getDirection()).to.equal("NW");
-            });
-        });
-    });
+    //     describe("rotate counter-clockwise", () => {
+    //         it("should rotate -45° when called once", () => {
+    //             const robot = new Robot("NE", simulateRotation);
+    //             robot.rotateCCW();
+    //             expect(robot.getDirection()).to.equal("N");
+    //         });
+    //         it("should rotate -90° when called twice", () => {
+    //             const robot = new Robot("NE", simulateRotation);
+    //             robot.rotateCCW();
+    //             robot.rotateCCW();
+    //             expect(robot.getDirection()).to.equal("NW");
+    //         });
+    //     });
+    // });
 });
